@@ -11,9 +11,9 @@ Maintainer: ICSPR
 
 *Date of Data Collection:* US Gov. FY 2013-2019; Saved 2025-02-12
 
-1. Information about the project: https://doi.org/10.3886/E219155V1
+Information about the project: https://doi.org/10.3886/E219155V1
 
-2. License: This work is licensed under a Public Domain Mark.
+License: This work is licensed under a Public Domain Mark.
 
 #Data-Specific Information
 
