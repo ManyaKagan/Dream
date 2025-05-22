@@ -68,7 +68,7 @@
     };
     L.control.layers(baseMaps).addTo(map);
     /* load base map */
-    {{ site.data.theme.map-base | default: 'Esri_WorldStreetMap' }}.addTo(map);
+    {{ site.data.theme.map-base | default: 'Esri_WorldGrayCanvas' }}.addTo(map);
 
     {% if site.data.theme.map-search == true %}
     /* add leaflet-fusesearch */
@@ -155,15 +155,33 @@
         layer.bindPopup(popupTemplate);
     }
     /* function to add objects to map */
+
+function getColor(feature){
+  switch (feature.properties["subject"]) {
+            case 'Art museums':
+              return  'orange';
+            case 'Botanical Gardens and Nature Centers':
+              return 'green';
+            case 'Science & Technology Museums and Planetariums':
+              return 'blue';
+            case 'History Museums':
+              return 'purple';
+            case 'Natural History & Natural Science Museums':
+              return 'brown';
+            case 'Zoos, Aquariums':
+              return 'lavender';
+default:
+              return 'black';
+          }
+        }
     function objectMarkers(feature,latlng){
    var marker = new L.CircleMarker(latlng, {
              radius: 5,
-              color: "black",
+              color: getColor(feature),
              alt: feature.properties.title,
         }
     return marker;
 }
-
     /* use geoJson features to add objects to map */
     var mapFeatures = L.geoJson(geodata, {
         onEachFeature: objectPopups,
