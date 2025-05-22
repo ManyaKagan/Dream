@@ -53,7 +53,7 @@
     });
 
 
-    var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{x}/{y}.png', {
+    var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
     attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
     maxZoom: 16
     });
@@ -155,11 +155,14 @@
         layer.bindPopup(popupTemplate);
     }
     /* function to add objects to map */
-    function objectMarkers(feature,latlng) {
-        var marker = L.marker(latlng, {alt: feature.properties.title});
-        {% if site.data.theme.map-cluster == true %}markers.addLayer(marker);{% endif %}
-        return marker;
-    }
+    function objectMarkers(feature,latlng){
+   var marker = new L.CircleMarker(latlng, {
+             radius: 5,
+              color: "black",
+             alt: feature.properties.title,
+        }
+    return marker;
+}
 
     /* use geoJson features to add objects to map */
     var mapFeatures = L.geoJson(geodata, {
